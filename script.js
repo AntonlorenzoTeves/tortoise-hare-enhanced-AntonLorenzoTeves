@@ -10,8 +10,10 @@
 const TRACK_length = 70
 const startBtn = document.getElementById('startBtn');
 const messageEl = document.getElementById('message');
-const trackEl = document.getElementById('track')
+const trackEl = document.getElementById('track');
+const tWinstotal = document.getElementById('t-wins');
 
+let tPoints = 0;
 let tortoisePosition = 1;
 let harePosition = 1;
 let raceIntervalId = null;
@@ -113,7 +115,8 @@ function showResult(){
     if ( tortoisePosition >= TRACK_length && harePosition >= TRACK_length){
         messageEl.textContent = "It's a tie"
     } else if (tortoisePosition >= TRACK_length){
-                messageEl.textContent = "Tortoise wins"
+                tPoints++;
+                tWinstotal.textContent = `Tortoise wins: ${tPoints}`;
     } else if (harePosition >= TRACK_length){
                 messageEl.textContent = "Hare wins"
     } else {
