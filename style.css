@@ -106,3 +106,22 @@ button:disabled {
 #log .entry {
 	font-family: monospace;
 }
+
+#scoreboard {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+	margin-bottom: 3rem;
+    font-weight: bold;
+    font-size: 1rem;
+    gap: 4rem;               
+  
+}
+
+#t-wins {
+    color: darkgreen; 
+}
+
+#h-wins {
+    color: orange; 
+}
