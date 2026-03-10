@@ -24,6 +24,9 @@ let stepCount = 0;
 startBtn.addEventListener("click",startRace)
 
 function startRace(){
+    tortoisePosition = 1;
+    harePosition = 1;
+
     messageEl.textContent = "Bang!!! look at them go"
 
     startBtn.disabled = true;
