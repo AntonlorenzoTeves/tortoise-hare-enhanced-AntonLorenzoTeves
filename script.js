@@ -10,8 +10,12 @@
 const TRACK_length = 70
 const startBtn = document.getElementById('startBtn');
 const messageEl = document.getElementById('message');
-const trackEl = document.getElementById('track')
+const trackEl = document.getElementById('track');
+const tWinstotal = document.getElementById('t-wins');
+const hWinstotal = document.getElementById('h-wins');
 
+let tPoints = 0;
+let hPoints = 0;
 let tortoisePosition = 1;
 let harePosition = 1;
 let raceIntervalId = null;
@@ -20,6 +24,9 @@ let stepCount = 0;
 startBtn.addEventListener("click",startRace)
 
 function startRace(){
+    tortoisePosition = 1;
+    harePosition = 1;
+
     messageEl.textContent = "Bang!!! look at them go"
 
     startBtn.disabled = true;
@@ -41,7 +48,7 @@ function raceStep(){
     clampPositions()
 
     //when one fo the animals reach 70+, show result message
-    if(tortoisePosition >= TRACK_length){
+    if(tortoisePosition >= TRACK_length || harePosition >= TRACK_length){
         clearInterval(raceIntervalId)
         raceIntervalId = null
         showResult()
@@ -72,11 +79,11 @@ function moveHare(){
     } else if (roll >= 3 && roll <= 4){
         harePosition +=5   
     }else if (roll >= 5 && roll <= 6){
-        harePosition +=3 
+        harePosition +=6
     }else if (roll >= 7 && roll <= 8){
-        harePosition -=5   
+        harePosition -=3  
     } else{
-        harePosition += 1
+        harePosition += 2
     } 
 }
 
@@ -113,9 +120,11 @@ function showResult(){
     if ( tortoisePosition >= TRACK_length && harePosition >= TRACK_length){
         messageEl.textContent = "It's a tie"
     } else if (tortoisePosition >= TRACK_length){
-                messageEl.textContent = "Tortoise wins"
-    } else if (harePosition >= TRACK_length){
-                messageEl.textContent = "Hare wins"
+                tPoints++;
+                tWinstotal.textContent = `Tortoise wins: ${tPoints}`;
+    } else if (harePosition >=  TRACK_length){
+                 hPoints++;
+                 hWinstotal.textContent = `Hare wins: ${hPoints}`;
     } else {
                         messageEl.textContent = "Race has stopped"
 
