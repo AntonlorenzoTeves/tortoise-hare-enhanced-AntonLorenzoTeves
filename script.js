@@ -12,8 +12,10 @@ const startBtn = document.getElementById('startBtn');
 const messageEl = document.getElementById('message');
 const trackEl = document.getElementById('track');
 const tWinstotal = document.getElementById('t-wins');
+const hWinstotal = document.getElementById('h-wins');
 
 let tPoints = 0;
+let hPoints = 0;
 let tortoisePosition = 1;
 let harePosition = 1;
 let raceIntervalId = null;
@@ -43,7 +45,7 @@ function raceStep(){
     clampPositions()
 
     //when one fo the animals reach 70+, show result message
-    if(tortoisePosition >= TRACK_length){
+    if(tortoisePosition >= TRACK_length || harePosition >= TRACK_length){
         clearInterval(raceIntervalId)
         raceIntervalId = null
         showResult()
@@ -74,11 +76,11 @@ function moveHare(){
     } else if (roll >= 3 && roll <= 4){
         harePosition +=5   
     }else if (roll >= 5 && roll <= 6){
-        harePosition +=3 
+        harePosition +=6
     }else if (roll >= 7 && roll <= 8){
-        harePosition -=5   
+        harePosition -=3  
     } else{
-        harePosition += 1
+        harePosition += 2
     } 
 }
 
@@ -117,8 +119,9 @@ function showResult(){
     } else if (tortoisePosition >= TRACK_length){
                 tPoints++;
                 tWinstotal.textContent = `Tortoise wins: ${tPoints}`;
-    } else if (harePosition >= TRACK_length){
-                messageEl.textContent = "Hare wins"
+    } else if (harePosition >=  TRACK_length){
+                 hPoints++;
+                 hWinstotal.textContent = `Hare wins: ${hPoints}`;
     } else {
                         messageEl.textContent = "Race has stopped"
 
